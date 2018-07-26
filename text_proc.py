@@ -1,9 +1,10 @@
+import re
+
 def lexical_diversity(my_text_data):
     word_count = len(my_text_data)
     vocab_size = len(set(my_text_data))
     diversity_score = vocab_size / word_count
     return diversity_score
-
 
 def plural(word):
     if word.endswith('y'):
@@ -15,5 +16,11 @@ def plural(word):
     else:
         return word + 's'
 
-print(plural('fairy'))
-print(plural('woman'))
+def stem(word):
+    regexp = r'^(.*?)(ing|ly|ed|ious|ies|ive|es|s|ment)?$'
+    stem, suffix = re.findall(regexp, word)[0]
+    return stem
+
+if __name__ == '__main__':
+    print(plural('fairy'))
+    print(plural('woman'))
